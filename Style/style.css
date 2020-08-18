@@ -1,5 +1,47 @@
+#nav-bar {
+    background: lightseagreen;
+    height: 80px;
+    width: 100%;
+}
+
+label.logo {
+    color: white;
+    font-size: 50px;
+    line-height: 80px;
+    padding: 0 20px;
+    font-weight: bold;
+    cursor: auto;
+}
+
+label.choice {
+    margin-left: 20px;
+    vertical-align: super;
+    font-size: 50px;
+}
+
+label {
+    margin-left: 10px;
+    vertical-align: super;
+    font-size: 25px;
+    font-family: monospace;
+    cursor: pointer;
+}
+
 #btn {
-    background-color: blue;
-    border-color: black;
-    border-radius: 20%;
+    box-shadow: 1px 1px;
+    background-color: lemonchiffon;
+    font-size: 30px;
+    line-height: 40px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 50px;
+    vertical-align: super;
+}
+
+#slider {
+    margin-left: 100px;
+}
+
+#myRange {
+    vertical-align: super;
 }

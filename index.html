@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="Style/style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <nav id = "nav-bar">
+            <label class = "logo"">AlgoVisualizer</label>
+            <label> <input type = "radio" name = "choice" class = "choice"> Bubble Sort </label>
+            <label> <input type = "radio" name = "choice" class = "choice"> Merge Sort </label>
+            <label> <input type = "radio" name = "choice" class = "choice"> Quick Sort </label>
+            <label> <input type = "radio" name = "choice" class = "choice"> Heap Sort </label>
+            <label id = "slider"> Speed: </label>
+            <label>-|</label><input type="range" min="1" max="100" step="5" value="1" class="slider" id="myRange"><label>|+</label>
+            <button id = "btn" onclick = "sort()"> Sort </button>
+            <button id = "btn" onclick = "reset()"> Reset </button>
+        </nav>
+        <center>
+        <div class="card-body" style="align-self: center; position:center; top:60px; left:10px; width:900px; height:800px;">
+            <canvas id="myChart" width="200" height="200" style="border:1px solid"></canvas>  
+        </div>
+        </center>
+    </body>
+    <script src = "https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src = "Script/script.js"></script>
+</html>

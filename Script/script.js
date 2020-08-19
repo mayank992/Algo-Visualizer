@@ -63,13 +63,24 @@ function init(){
     chart.update();
 }
 
+function reset() {
+    chart.data.labels = []
+    chart.backgroundColor = [];
+    dataset.data = [];
+    let option = document.getElementsByName('choice');
+    for (i = 0; i < option.length; i++) {
+        option[i].checked = false;
+    }
+    init();
+}
+
 // calling init function during loading of webpage
 init();
 
 // refresh the whole webpage
-function reset() {
-    location.reload();
-}
+// function reset() {
+//     location.reload();
+// }
 
 // sleep for ms millisecond 
 function sleep(ms) {

@@ -135,7 +135,7 @@ async function BubbleSort() {
 
 async function merge(low, mid, high) {
     i = low, j = mid + 1;
-    while (i <= high && j <= high) {
+    while (i < j && i <= high && j <= high) {
         await updateBarColor('black', i, 0);
         await updateBarColor('black', j, 1000 / speed);
         if (dataset.data[i] > dataset.data[j]) {

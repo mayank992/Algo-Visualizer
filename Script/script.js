@@ -100,18 +100,18 @@ async function BubbleSort() {
     for (i = 0; i < n - 1; i++) {
         for (j = 0; j < n - i - 1; j++) {
             await updateBarColor('black', j, 0);
-            await updateBarColor('black', j + 1, 100 / speed);
+            await updateBarColor('black', j + 1, 1000 / speed);
             if (dataset.data[j] > dataset.data[j + 1]) {
                 await updateBarColor('red', j, 0);
-                await updateBarColor('red', j + 1, 100 / speed);
+                await updateBarColor('red', j + 1, 1000 / speed);
                 await swap(j, j + 1, 0);
             }
             await updateBarColor('green', j, 0);
-            await updateBarColor('green', j + 1, 100 / speed);
+            await updateBarColor('green', j + 1, 1000 / speed);
             await updateBarColor('blue', j, 0);
             await updateBarColor('blue', j + 1, 0);
         }
-        await updateBarColor('purple', n - i - 1, 100 / speed);
+        await updateBarColor('purple', n - i - 1, 1000 / speed);
     }
 }
 

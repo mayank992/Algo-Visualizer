@@ -72,7 +72,7 @@ init();
 
 function reset() {
     chart.data.labels = []
-    chart.backgroundColor = [];
+    dataset.backgroundColor = [];
     dataset.data = [];
     slider.value = 1;
     let option = document.getElementsByName('choice');
@@ -124,10 +124,7 @@ async function BubbleSort() {
             await updateBarColor('blue', j, 0);
             await updateBarColor('blue', j + 1, 0);
         }
-        await updateBarColor('purple', n - i - 1, 1000 / speed);
-    }
-    for (i = 0; i < n; i++) {
-        updateBarColor('green', i, 0);
+        await updateBarColor('green', n - i - 1, 1000 / speed);
     }
 }
 
@@ -135,7 +132,7 @@ async function BubbleSort() {
 
 async function merge(low, mid, high) {
     i = low, j = mid + 1;
-    while (i <= high && j <= high) {
+    while (i < j && i <= high && j <= high) {
         await updateBarColor('black', i, 0);
         await updateBarColor('black', j, 1000 / speed);
         if (dataset.data[i] > dataset.data[j]) {
@@ -145,7 +142,6 @@ async function merge(low, mid, high) {
                 dataset.data[k + 1] = dataset.data[k];
             }
             dataset.data[i] = temp;
-            chart.update();
             await updateBarColor('black', j, 0);
             await updateBarColor('green', i, 1000 / speed);
             await updateBarColor('purple', j, 0);
@@ -195,28 +191,45 @@ async function MergeSort() {
 // by placing the pivot element on itss corrent position
 async function partition(low, high) {
     pivot = dataset.data[high];
-    i = low - 1, j = low;
+    i = low, j = low;
     while (j < high) {
+        await updateBarColor('black', i, 0);
+        await updateBarColor('black', j, 1000 / speed);
         if (dataset.data[j] < pivot) {
-            await swap(++i, j, 1000 / speed);
+            await updateBarColor('red', j, 0);
+            await swap(i, j, 1000 / speed);   
+            await updateBarColor('blue', i, 0);
+            i++;
         }
+        await updateBarColor('blue', j, 0);
         j++;
     }
-    await swap(i + 1, high, 1000 / speed);
-    return i + 1;
+    await swap(i, high, 1000 / speed);
+    await updateBarColor('green', i, 0);
+    return i;
 }
-
+    
 async function QuickSortHelper(low, high) {
-    if (low >= high) return ;
+    if (low >= high) {
+        updateBarColor('green', low, 0);
+        return ;
+    }
+    await updateBarColor('purple', high, 0);
     const pivot = await partition(low, high);
+    if (pivot != high)
+        await updateBarColor('blue', high, 0);
     await QuickSortHelper(low, pivot - 1);
     await QuickSortHelper(pivot + 1, high);
 }
 
 // Quick Sort Algorithm
 // Time Complexity: Average O(N logN), Worst O(N^2)
-function QuickSort() {
-    QuickSortHelper(0, n - 1);
+async function QuickSort() {
+    // consoloe.log('In QuickSort');
+    await QuickSortHelper(0, n - 1);
+    for (i = 0; i < n; i++) {
+        updateBarColor('green', i, 0);
+    }
 }
 
 //###################################################################
@@ -230,7 +243,11 @@ function HeapSort() {
 //###################################################################
 // on clicking the sort button this function checks all the values of 
 // the radio button and call the approriate sorting algorithm function 
-function sort() {
+async function sort() {
+    let btn1 = document.getElementById('btn1');
+    let btn2 = document.getElementById('btn2');
+    btn1.disabled = true;
+    btn2.disabled = true;
     let toCall = 4;
     let option = document.getElementsByName('choice');
     for (i = 0; i < option.length; i++) {
@@ -240,15 +257,17 @@ function sort() {
         }
     }
     switch(toCall) {
-        case 0: BubbleSort();
+        case 0: await BubbleSort();
             break;
-        case 1: MergeSort();
+        case 1: await MergeSort();
             break;
-        case 2: QuickSort();
+        case 2: await QuickSort();
             break;
-        case 3: HeapSort();
+        case 3: await HeapSort();
             break;
         default:
             alert('Please select the Sorting Algorithm.');
     }
+    btn1.disabled = false;
+    btn2.disabled = false;
 }

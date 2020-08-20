@@ -238,22 +238,14 @@ async function heapify(size, i) {
     let largest = i;
     let leftChild = (2 * i) + 1;
     let rightChild = (2 * i) + 2;
-<<<<<<< HEAD
-=======
     await updateBarColor('black', largest, 0);
     if (leftChild < size) await updateBarColor('yellow', leftChild, 0);
     if (rightChild < size) await updateBarColor('yellow', rightChild, 1000 / speed);
->>>>>>> temp-branch
     if (leftChild < size && dataset.data[leftChild] > dataset.data[largest])
         largest = leftChild;
     if (rightChild < size && dataset.data[rightChild] > dataset.data[largest])
         largest = rightChild;
     if (largest != i) {
-<<<<<<< HEAD
-        await swap(i, largest, 0);
-        await heapify(size, largest);
-    }
-=======
         if (largest != leftChild && leftChild < size) await updateBarColor('blue', leftChild, 0);
         else if (rightChild < size) await updateBarColor('blue', rightChild, 0);
         await swap(i, largest, 0);
@@ -268,7 +260,6 @@ async function heapify(size, i) {
         if (leftChild < size) await updateBarColor('blue', leftChild, 0);
         if (rightChild < size) await updateBarColor('blue', rightChild, 0);
     }
->>>>>>> temp-branch
 }
 
 // Haep Sort Algorithm
@@ -283,19 +274,13 @@ async function HeapSort() {
         await updateBarColor('green', i, 0);
         await heapify(i, 0);
     }
-<<<<<<< HEAD
-=======
-    updateBarColor('blue', 0, 0);
->>>>>>> temp-branch
+    updateBarColor('green', 0, 0);
 }
 
 //###################################################################
 // on clicking the sort button this function checks all the values of 
-<<<<<<< HEAD
 // the radio button and call the approriate sorting algorithm function 
-=======
 // the radio buttons and call the approriate sorting algorithm function 
->>>>>>> temp-branch
 async function sort() {
     let btn1 = document.getElementById('btn1');
     let btn2 = document.getElementById('btn2');

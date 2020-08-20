@@ -234,10 +234,32 @@ async function QuickSort() {
 
 //###################################################################
 
+async function heapify(size, i) {
+    let largest = i;
+    let leftChild = (2 * i) + 1;
+    let rightChild = (2 * i) + 2;
+    if (leftChild < size && dataset.data[leftChild] > dataset.data[largest])
+        largest = leftChild;
+    if (rightChild < size && dataset.data[rightChild] > dataset.data[largest])
+        largest = rightChild;
+    if (largest != i) {
+        await swap(i, largest, 0);
+        await heapify(size, largest);
+    }
+}
+
 // Haep Sort Algorithm
 // Time Complexity: O(N logN)
-function HeapSort() {
-    console.log('In HeapSort.');
+async function HeapSort() {
+    // console.log('In HeapSort.');
+    for (i = (n / 2) - 1; i >= 0; i--) {
+        await heapify(n, i);
+    }
+    for (i = n - 1; i >= 0; i--) {
+        await swap(0, i, 0);
+        await updateBarColor('green', i, 0);
+        await heapify(i, 0);
+    }
 }
 
 //###################################################################

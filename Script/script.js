@@ -234,15 +234,52 @@ async function QuickSort() {
 
 //###################################################################
 
+async function heapify(size, i) {
+    let largest = i;
+    let leftChild = (2 * i) + 1;
+    let rightChild = (2 * i) + 2;
+    await updateBarColor('black', largest, 0);
+    if (leftChild < size) await updateBarColor('yellow', leftChild, 0);
+    if (rightChild < size) await updateBarColor('yellow', rightChild, 1000 / speed);
+    if (leftChild < size && dataset.data[leftChild] > dataset.data[largest])
+        largest = leftChild;
+    if (rightChild < size && dataset.data[rightChild] > dataset.data[largest])
+        largest = rightChild;
+    if (largest != i) {
+        if (largest != leftChild && leftChild < size) await updateBarColor('blue', leftChild, 0);
+        else if (rightChild < size) await updateBarColor('blue', rightChild, 0);
+        await swap(i, largest, 0);
+        await updateBarColor('green', largest, 1000 / speed);
+        await updateBarColor('blue', i, 0);
+        await updateBarColor('blue', largest, 0);
+        await heapify(size, largest);
+    }
+    else {
+        await updateBarColor('green', largest, 1000 / speed);
+        await updateBarColor('blue', largest, 0);
+        if (leftChild < size) await updateBarColor('blue', leftChild, 0);
+        if (rightChild < size) await updateBarColor('blue', rightChild, 0);
+    }
+}
+
 // Haep Sort Algorithm
 // Time Complexity: O(N logN)
-function HeapSort() {
-    console.log('In HeapSort.');
+async function HeapSort() {
+    // console.log('In HeapSort.');
+    for (i = (n / 2) - 1; i >= 0; i--) {
+        await heapify(n, i);
+    }
+    for (i = n - 1; i >= 0; i--) {
+        await swap(0, i, 0);
+        await updateBarColor('green', i, 0);
+        await heapify(i, 0);
+    }
+    updateBarColor('blue', 0, 0);
 }
 
 //###################################################################
 // on clicking the sort button this function checks all the values of 
-// the radio button and call the approriate sorting algorithm function 
+// the radio buttons and call the approriate sorting algorithm function 
 async function sort() {
     let btn1 = document.getElementById('btn1');
     let btn2 = document.getElementById('btn2');
@@ -268,10 +305,6 @@ async function sort() {
         default:
             alert('Please select the Sorting Algorithm.');
     }
-<<<<<<< HEAD
-}
-=======
     btn1.disabled = false;
     btn2.disabled = false;
 }
->>>>>>> update script.js

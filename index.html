@@ -7,12 +7,11 @@
     <body>
         <nav id = "nav-bar">
             <label class = "logo"">AlgoVisualizer</label>
-            <label> <input type = "radio" name = "choice" class = "choice"> Bubble Sort </label>
-            <label> <input type = "radio" name = "choice" class = "choice"> Merge Sort </label>
-            <label> <input type = "radio" name = "choice" class = "choice"> Quick Sort </label>
-            <label> <input type = "radio" name = "choice" class = "choice"> Heap Sort </label>
-            <label id = "slider"> Speed: </label>
-            <label>-|</label><input type="range" min="1" max="100" step="5" value="1" class="slider" id="myRange"><label>|+</label>
+            <label> <input type = "radio" name = "choice" class = "choice" onchange = "init()"> Bubble Sort </label>
+            <label> <input type = "radio" name = "choice" class = "choice" onchange = "init()"> Merge Sort </label>
+            <label> <input type = "radio" name = "choice" class = "choice" onchange = "init()"> Quick Sort </label>
+            <label> <input type = "radio" name = "choice" class = "choice" onchange = "init()"> Heap Sort </label>
+            <label>Speed:</label><label>-|</label><input type="range" min="1" max="100" step="5" value="1" class="slider" id="myRange"><label>|+</label>
             <button id = "btn1" onclick = "sort()"> Sort </button>
             <button id = "btn2" onclick = "reset()"> Reset </button>
         </nav>

@@ -46,7 +46,7 @@ let chart = new Chart(ctx, {
 
 //###################################################################
 
-let n = 100, speed = 1;
+let n = 70, speed = 1;
 let dataset = chart.data.datasets[0];
 let slider = document.getElementById("myRange");
 slider.oninput = function() {
@@ -58,6 +58,9 @@ slider.oninput = function() {
 // initialize the dataset of the chart object(Using random function
 // to generate random values)
 function init(){
+    chart.data.labels = []
+    dataset.backgroundColor = [];
+    dataset.data = [];
     for (let i = 0; i < 70; i++) {
         chart.data.labels.push('Arr');
         dataset.backgroundColor.push('blue');
@@ -114,18 +117,18 @@ async function BubbleSort() {
     for (i = 0; i < n - 1; i++) {
         for (j = 0; j < n - i - 1; j++) {
             await updateBarColor('black', j, 0);
-            await updateBarColor('black', j + 1, 1000 / speed);
+            await updateBarColor('black', j + 1, 500 / speed);
             if (dataset.data[j] > dataset.data[j + 1]) {
                 await updateBarColor('red', j, 0);
-                await updateBarColor('red', j + 1, 1000 / speed);
+                await updateBarColor('red', j + 1, 500 / speed);
                 await swap(j, j + 1, 0);
             }
             await updateBarColor('green', j, 0);
-            await updateBarColor('green', j + 1, 1000 / speed);
+            await updateBarColor('green', j + 1, 500 / speed);
             await updateBarColor('blue', j, 0);
             await updateBarColor('blue', j + 1, 0);
         }
-        await updateBarColor('green', n - i - 1, 1000 / speed);
+        await updateBarColor('green', n - i - 1, 500 / speed);
     }
 }
 

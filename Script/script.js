@@ -71,15 +71,16 @@ function init(){
 init();
 
 function reset() {
-    chart.data.labels = []
-    dataset.backgroundColor = [];
-    dataset.data = [];
-    slider.value = 1;
-    let option = document.getElementsByName('choice');
-    for (i = 0; i < option.length; i++) {
-        option[i].checked = false;
-    }
-    init();
+    // chart.data.labels = []
+    // dataset.backgroundColor = [];
+    // dataset.data = [];
+    // slider.value = 1;
+    // let option = document.getElementsByName('choice');
+    // for (i = 0; i < option.length; i++) {
+    //     option[i].checked = false;
+    // }
+    // init();
+    location.reload();
 }
 
 // sleep for ms millisecond 
@@ -283,9 +284,7 @@ async function HeapSort() {
 // the radio buttons and call the approriate sorting algorithm function 
 async function sort() {
     let btn1 = document.getElementById('btn1');
-    let btn2 = document.getElementById('btn2');
     btn1.disabled = true;
-    btn2.disabled = true;
     let toCall = 4;
     let option = document.getElementsByName('choice');
     for (i = 0; i < option.length; i++) {
@@ -307,5 +306,4 @@ async function sort() {
             alert('Please select the Sorting Algorithm.');
     }
     btn1.disabled = false;
-    btn2.disabled = false;
 }
